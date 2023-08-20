@@ -56,9 +56,14 @@ header p {
 /* Form */
 form {
     background: #FAFAFC;
-    border-radius: 8px;
+    border-radius: 8px 8px 0 0;
     margin-top: 38px;
     padding: 64px;
+
+    /* Padronização de espaçamento entre as divs com as classes input-wrapper */
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
 }
 
 form fieldset {
@@ -154,4 +159,88 @@ form fieldset legend {
     background-image: url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M8 10L12 14L16 10' stroke='%239C98A6' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E%0A");
     background-repeat: no-repeat;
     background-position: right 24px top 50%;
+}
+
+/* Checkbox - Foi modificado o tipo checkbox padrão para criar o componente personalizado*/
+.checkbox-wrapper{
+    position: relative;
+}
+
+.checkbox-wrapper input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 24px;
+    height: 24px;
+    opacity: 0;
+}
+
+.checkbox-wrapper input:focus + label::before {
+    outline: 2px solid #000;
+}
+
+/* Criação do input checkbox personalizado */
+.checkbox-wrapper input:checked + label::before {
+    background-image: url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M9.00016 16.1698L4.83016 11.9998L3.41016 13.4098L9.00016 18.9998L21.0002 6.99984L19.5902 5.58984L9.00016 16.1698Z' fill='%2342D3FF'/%3E%3C/svg%3E%0A");
+}
+
+.checkbox-wrapper label {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 16px;
+
+    margin: 0;
+
+    font-size: 14px;
+    line-height: 24px;
+    color: #4E4958;
+}
+
+.checkbox-wrapper label::before {
+    content: '';
+    width: 24px;
+    height: 24px;
+    border: 1px solid #E6E6F0;
+    border-radius: 8px;
+}
+
+/* Fieldset de Dia e hora */
+.col-3 {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+/* Para o elemento com a classe col-3, acesse o elemento div:nth-child(1) => :nth-child(1) significa pegar o primeiro filho, mas o ideal seria adicionar uma classe específica */
+.col-3 > div:nth-child(1) {
+    width: 100%;
+}
+
+footer {
+    background: #F0F0F4;
+    height: 136px;
+    display: flex;
+    flex-direction: column;
+    padding: 40px 64px;
+    margin-bottom: 100px;
+    border-top: 1px solid #D6D6D6;
+    border-radius: 0 0 8px 8px;
+}
+
+footer .button {
+    height: 56px;
+    background-color: #04D361;
+    border: 0;
+    border-radius: 8px;
+
+    font-family: 'Archivo';
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 26px;
+    color: #fff;
+}
+
+footer .button:hover {
+    background-color: #08a04c;
 }
