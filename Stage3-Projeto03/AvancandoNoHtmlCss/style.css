@@ -125,11 +125,12 @@ form fieldset legend {
     color: #C1BCCC;
 }
 
-.input-wrapper text-area {
+.input-wrapper textarea {
     background: #FAFAFC;
     border: 1px solid #E6E6F0;
     border-radius: 8px;
     height: 168px;
+    max-width: 100%;
     padding: 0;
 
     font-size: 16px;
@@ -243,4 +244,8 @@ footer .button {
 
 footer .button:hover {
     background-color: #08a04c;
+}
+
+input:invalid {
+    border: 1px solid #FF1010;
 }
