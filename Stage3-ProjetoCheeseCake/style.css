@@ -1,0 +1,111 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+:root {
+    font-family: 'Source Serif 4', serif;
+    font-size: 62.5%;
+}
+
+:root {
+    --orangeColor: #A54328;
+    --orangeHoverColor: #73301e;
+    --whiteColor: #fff;
+}
+
+body {
+    color: var(--orangeColor);
+    font-size: 1.6rem;
+}
+
+main {
+    max-width: 32rem;
+
+    margin-inline: auto;
+
+    padding: 5.6rem 4rem;
+    box-sizing: content-box; /*mantém o conteudo com 32rem (que é o tamanho da caixa)*/
+
+    display: flex;
+    flex-direction: column;
+    gap: 3.2rem;
+}
+
+img {
+    width: 100%;
+    margin-block: 3.2rem;
+}
+
+h1, h2 {
+    /* clamp(min, ideal, max) -> function que renderiza o tamanho da fonte de acordo com o informado. Ex.: clamp(2rem, 2vw, 4rem), onde vw é Viewport-Width */
+    /* Sempre manter o valor do segundo parâmetro como um meio termo entre o min e max */
+    font-size: clamp(2.8rem, 2vw + 1rem, 4rem);
+    line-height: clamp(3.6rem, 2vw + 1rem, 5rem);
+}
+
+h2 {
+    margin-bottom: 3.2rem;
+}
+
+p, li, strong {
+    font-size: clamp(1.4rem, 1vw + 0.4rem, 2rem);
+    line-height: clamp(1.8rem, 1vw + 1rem, 2.5rem);
+}
+
+ul, ol {
+    padding-left: 2.4rem;
+    margin-bottom: 3.2rem;
+}
+
+button {
+    background-color: var(--orangeColor);
+    color: var(--whiteColor);
+
+    padding: .8rem 1.2rem;
+
+    border: 0;
+    border-radius: .6rem;
+
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: var(--orangeHoverColor);
+}
+
+
+
+/* Media query para responsividade de desktop */
+@media (min-width: 1024px){
+    main {
+        flex-direction: row;
+        max-width: fit-content;
+        gap: 16rem;
+
+        padding: 9rem 6rem;
+    }
+
+    .recipe {
+        max-width: 43.5rem;
+    }
+
+    .ingredients {
+        max-width: 52.5rem;
+    }
+
+    p, li, strong {
+        font-size: 2rem;
+        line-height: 2.5rem;
+    }
+
+    button {
+        padding: 1 rem 2 rem;
+        font-size: 1.4rem;
+        line-height: 2.4rem;
+    }
+}
