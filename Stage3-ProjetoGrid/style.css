@@ -8,11 +8,13 @@ body {
 #app {
     display: grid;
     grid-template-areas: 
-        "header header header"
-        "main main aside"
-        "footer footer footer";
+    "header header header"
+    "main main aside"
+    "footer footer footer";
     
-        height: 100vh;
+    /* shorthand gap */
+    gap: 20px;
+    height: 100vh;
 }
 
 #app header {
@@ -26,3 +28,27 @@ body {
 #app footer {
     grid-area: footer;
 }
+
+
+
+/* 
+9 propriedades fundamentais do grid-css 
+
+align para alinhar no eixo y
+justify para alinhar no eixo x
+place para alinhar ambos elementos (align e justify) ao mesmo tempo
+
+** 6 são aplicadas em container **
+align-content
+justify-content
+place-content
+
+align-items
+justify-items
+place-items
+
+** 3 aplicadas em items **
+align-self
+justify-self
+place-self 
+*/
