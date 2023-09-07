@@ -1,23 +1,9 @@
+import { Modal } from './js/modal.js';
+
 const form = document.getElementById('form-calculo-imc');
 const inputPeso = document.getElementById('input-peso');
 const inputAltura = document.getElementById('input-altura');
 const btnCalcularImc = document.getElementById('btn-calcular-imc');
-
-const Modal = {
-    wrapper: document.getElementById('modal-wrapper'),
-    modalValorImc: document.getElementById('valor-calculo-imc'),
-    btnClose: document.getElementById('btn-close-modal'),
-
-    open() {
-        this.wrapper.classList.add('show');
-    },
-    close(){
-        this.wrapper.classList.remove('show');
-    }
-}
-
-// arrow function
-Modal.btnClose.onclick = () => Modal.close();
 
 // arrow function
 form.onsubmit = (event) => {
