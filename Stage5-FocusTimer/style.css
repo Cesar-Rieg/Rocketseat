@@ -10,6 +10,11 @@
     --text-color: hsl(var(--hue), 40%, 98%);
     --primary-color: hsl(var(--hue), 100%, 63%);
     --bg-controls-color: hsl(var(--hue), 0%, 14%);
+    --button-secondary-color: hsl(var(--hue), 40%, 98%);
+
+    --color-transparent: transparent;
+
+    font-size: clamp(40%, 1% + 2vh, 62.5%);
 }
 
 body {
@@ -21,6 +26,43 @@ body {
     place-content: center;
 }
 
+.light-mode {
+    --bg-color: hsl(var(--hue), 40%, 98%);
+    --text-color: hsl(var(--hue), 5%, 7%);
+    --bg-controls-color: hsl(var(--hue), 0%, 14%);
+}
+
+html.light-mode .ph-sun,
+html:not(.light-mode) .ph-moon {
+    display: none;
+}
+
+#toggle-mode {
+    position: absolute;
+    
+    top: 3.2rem;
+    right: 3.2rem;
+    
+    font-size: 3.2rem;
+    line-height: 0;
+
+    color: var(--text-color);
+}
+
+
+/* Classe utilitária para leitores de tela */
+.screen-reader-only {
+    height: 1px;
+    width: 1px;
+    position: absolute;
+    overflow: hidden;
+
+    margin: -1px;
+    padding: 0px;
+    border: 0;
+    appearance: none;
+}
+
 #app {
     display: grid;
     justify-items: center;
@@ -29,3 +71,44 @@ body {
 .flex {
     display: flex;
 }
+
+#timer {
+    font-size: 9.6rem;
+    font-weight: bold;
+    font-family: sans-serif;
+}
+
+#controls {
+    margin-top: 1.6rem;
+    padding: 2.2rem 4rem;
+
+    gap: 1.6rem;
+
+    background-color: var(--bg-controls-color);
+    border-radius: 999rem;
+}
+
+button {
+    background-color: var(--color-transparent);
+    border: 0;
+    color: var(--primary-color);
+    cursor: pointer;
+    font-size: 6.4rem;
+
+}
+
+.color-secondary {
+    color: var(--button-secondary-color);
+}
+
+
+/* controls */
+.running .ph-play-circle,
+.running .ph-timer,
+.music-on .ph-speaker-none,
+html:not(.running) .ph-pause-circle,
+html:not(.running) .ph-stop-circle,
+html:not(.running) .ph-speaker-high {
+    display: none;
+}
+
