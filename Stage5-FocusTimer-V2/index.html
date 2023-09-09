@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Temporizador estilo pomodoro">
+
+    <link rel="stylesheet" href="./style.css">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <script type="module" src="./src/main.js" defer></script>
+    
+    <!-- https://www.figma.com/file/zc8CPzaFeHjGZ7eNWQ6kQa/Stage-05---Focus-Timer-2.0-(Copy)?type=design&node-id=0-4&mode=design&t=pjdegj8uBTmCP5cd-0 -->
+
+    <title>Focus Timer V2</title>
+</head>
+<body>
+    <div id="app">
+        <div class="container">
+            <section id="timer" class="flex">
+                <span id="minutes">25</span>
+                <span>:</span>
+                <span id="seconds">00</span>
+            </section>
+    
+            <section id="timer-controls" class="flex">
+                <button 
+                    data-action="execute"
+                    class="ph ph-play-circle">
+                    <span class="sr-only">Iniciar contador</span>
+                </button>
+                <button
+                    data-action="stop"
+                    class="ph ph-stop-circle">
+                    <span class="sr-only">Pausar contador</span>
+                </button>
+                <button
+                    data-action="addFiveSeconds"
+                    class="ph ph-plus-circle">
+                    <span class="sr-only">Adicionar cinco segundos no contador</span>
+                </button>
+                <button
+                    data-action="removeFiveSeconds"
+                    class="ph ph-minus-circle">
+                    <span class="sr-only">Remover cinco segundos do contador</span>
+                </button>
+            </section>
+        </div>
+        <div class="container" id="music-controls">
+            <button id="forest">
+                <img src="./assets/images/forest.svg" alt="">
+                <span class="sr-only">Play som floresta</span>
+            </button>
+            <button id="rain" >
+                <img id="img-rain" src="./assets/images/rain.svg" alt="">
+                <span class="sr-only">Play som chuva</span>
+            </button>
+            <button id="coffee-shop" class="selected">
+                <img src="./assets/images/coffee-shop.svg" alt="">
+                <span class="sr-only">Play som cafeteria</span>
+            </button>
+            <button id="fireplace">
+                <img src="./assets/images/fireplace.svg " alt="">
+                <span class="sr-only">Play som lareira</span>
+            </button>
+        </div>
+</body>
+</html>

@@ -1,0 +1,59 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg-primary-color-button: #02799D;
+    --bg-secondary-color-button: #E1E1E6;
+
+    font-size: clamp(40%, 1% + 2vw, 62.5%);
+}
+
+#timer {
+    font-size: 9.6rem;
+    font-weight: bold;
+    font-family: sans-serif;
+}
+
+#timer-controls {
+    margin-top: 1.6rem;
+    padding: 2.2rem 4rem;
+    gap: 1.6rem;
+    background-color: var(--controls-bg-color);
+    border-radius: 999rem;
+
+}
+
+button {
+    background-color: transparent;
+    border: 0;
+    color: var(--primary-color);
+    cursor: pointer;
+    font-size: 6.4rem;
+}
+
+.sr-only {
+    width: 1px;
+    height: 1px;
+    position: absolute;
+    overflow: hidden;
+    margin: -1px;
+    padding: 0px;
+    border: 0;
+    appearance: none;
+}
+
+
+#forest, #rain, #coffee-shop, #fireplace {
+    height: 15.2rem;
+    width: 13.8rem;
+    border: none;
+    border-radius: 2.4rem;
+    background: var(--bg-secondary-color-button);
+}
+
+#music-controls .selected {
+    background-color: var(--bg-primary-color-button);
+}
