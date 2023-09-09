@@ -4,6 +4,8 @@ import {resetTimer} from './actions.js';
 import * as sounds from './sounds.js';
 
 export function execute(){
+    clearTimeout(state.executionId);
+
     if (!state.isRunning) return;
 
     let minutes = Number(el.MINUTES.textContent);
@@ -26,7 +28,7 @@ export function execute(){
     updateDisplay(minutes, seconds);
 
     // callback function que irá invocar o método execute() a cada 1 segundo
-    setTimeout(() => {
+    state.executionId = setTimeout(() => {
         execute();
     }, 1000);
 }
