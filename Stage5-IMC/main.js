@@ -27,13 +27,13 @@ form.onsubmit = (event) => {
     }
 
     let resultado = CalcularImc(peso, altura);
-    console(resultado);
+    consoles(resultado);
 
     Modal.setValorDoImc(resultado);
     Modal.open();
 }
 
-function console(mensagem){
+function consoles(mensagem){
     console.log(`(console.log(valor)) Exibe um valor no console: ${mensagem}`);
     console.info(`(console.info(mensagem)) Exibe uma mensagem informativa: ${mensagem}`);
     console.warn(`(console.warn(aviso)) Exibe um aviso com ícone de alerta: ${mensagem}`);
