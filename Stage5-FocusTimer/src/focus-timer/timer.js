@@ -1,12 +1,13 @@
 import state from './state.js';
 import * as el from './elements.js';
-import resetTimer from './actions.js';
+import {resetTimer} from './actions.js';
+import * as sounds from './sounds.js';
 
-export function exeute(){
+export function execute(){
     if (!state.isRunning) return;
 
-    let minutes = NUmber(el.MINUTES.textContent);
-    let seconds = NUmber(el.SECONDS.textContent);
+    let minutes = Number(el.MINUTES.textContent);
+    let seconds = Number(el.SECONDS.textContent);
 
 
     seconds--;
@@ -18,6 +19,7 @@ export function exeute(){
 
     if (minutes < 0) {
         resetTimer();
+        sounds.KICHEN_TIMER.play();
         return;
     }
 

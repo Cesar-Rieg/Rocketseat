@@ -4,63 +4,58 @@
     box-sizing: border-box;
 }
 
+
 :root {
     --hue: 194;
     --bg-color: hsl(var(--hue), 5%, 7%);
     --text-color: hsl(var(--hue), 40%, 98%);
     --primary-color: hsl(var(--hue), 100%, 63%);
-    --bg-controls-color: hsl(var(--hue), 0%, 14%);
-    --button-secondary-color: hsl(var(--hue), 40%, 98%);
+    --controls-bg-color: hsl(var(--hue), 0%, 14%);
+    --button-secondary: hsl(var(--hue), 40%, 98%);
 
-    --color-transparent: transparent;
-
-    font-size: clamp(40%, 1% + 2vh, 62.5%);
+    font-size: clamp(40%, 1% + 2vw, 62.5%);
 }
 
-body {
-    background-color: var(--bg-color);
-    color: var(--text-color);
-    
-    height: 100vh;
-    display: grid;
-    place-content: center;
-}
 
-.light-mode {
-    --bg-color: hsl(var(--hue), 40%, 98%);
+html.light {
     --text-color: hsl(var(--hue), 5%, 7%);
-    --bg-controls-color: hsl(var(--hue), 0%, 14%);
+    --bg-color: hsl(var(--hue), 40%, 98%);
+    --controls-bg-color: hsl(var(--hue), 0%, 14%);
 }
 
-html.light-mode .ph-sun,
-html:not(.light-mode) .ph-moon {
+html.light .ph-sun,
+html:not(.light) .ph-moon {
     display: none;
 }
 
 #toggle-mode {
     position: absolute;
-    
-    top: 3.2rem;
     right: 3.2rem;
-    
+    top: 3.2rem;
     font-size: 3.2rem;
     line-height: 0;
-
     color: var(--text-color);
 }
 
 
-/* Classe utilitária para leitores de tela */
-.screen-reader-only {
-    height: 1px;
+.sr-only {
     width: 1px;
+    height: 1px;
     position: absolute;
     overflow: hidden;
-
     margin: -1px;
     padding: 0px;
     border: 0;
     appearance: none;
+}
+
+body {
+background-color: var(--bg-color);
+color: var(--text-color);
+
+display: grid;
+height: 100vh;
+place-content: center;
 }
 
 #app {
@@ -81,24 +76,22 @@ html:not(.light-mode) .ph-moon {
 #controls {
     margin-top: 1.6rem;
     padding: 2.2rem 4rem;
-
     gap: 1.6rem;
-
-    background-color: var(--bg-controls-color);
+    background-color: var(--controls-bg-color);
     border-radius: 999rem;
+
 }
 
 button {
-    background-color: var(--color-transparent);
+    background-color: transparent;
     border: 0;
     color: var(--primary-color);
     cursor: pointer;
     font-size: 6.4rem;
-
 }
 
-.color-secondary {
-    color: var(--button-secondary-color);
+.secondary {
+    color: var(--button-secondary);
 }
 
 
@@ -108,7 +101,6 @@ button {
 .music-on .ph-speaker-none,
 html:not(.running) .ph-pause-circle,
 html:not(.running) .ph-stop-circle,
-html:not(.running) .ph-speaker-high {
+html:not(.music-on) .ph-speaker-high {
     display: none;
 }
-
