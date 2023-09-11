@@ -1,0 +1,36 @@
+@import url("nornalize.css");
+@import url("sr-only.css");
+@import url("header.css");
+@import url("table.css");
+
+:root {
+    font-size: 62.5%;
+    
+    --hue: 194;
+    --font-family-primary: 'Poppins', sans-serif;
+    --text-color: #303030;
+    --primary-color: hsl(var(--hue), 100%, 73%);
+    --background-color: rgb(245, 245, 245);
+
+    --background-color-table-even-elements: #EEE; 
+    --background-color-table-odd-elements: #DDD;
+
+    --box-shadow-table: rgba(0, 0, 0, 0.3);
+}
+
+body {
+    font-size: 1.6rem;
+    color: var(--text-color);
+    background-color: var(--background-color);
+}
+
+body * {
+    font-family: var(--font-family-primary);
+}
+
+
+#app {
+    padding: 2rem;
+    max-width: 500px;
+    margin: 0 auto;
+}

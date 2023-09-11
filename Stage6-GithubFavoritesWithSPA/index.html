@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="./styles/style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+    <title>Github Favorites</title>
+</head>
+<body>
+    <div id="app">
+        <header class="header">
+            <h1 class="header-tittle">Github Favorites</h1>
+            <div class="header-search">
+                <label for="github-user" class="sr-only">Usuário do Github</label>
+                <input id="github-user" class="input-search" type="text" placeholder="Usuário do Github">
+                <button class="btn-search">&plus;</button>
+            </div>
+        </header>
+        <table class="table">
+            <thead class="thead">
+                <tr>
+                    <th class="th">Usuário</th>
+                    <th class="th">Repositórios</th>
+                    <th class="th">Seguidores</th>
+                    <th class="th"></th>
+                </tr>
+            </thead>
+            <tbody class="tbody">
+                <tr>
+                    <td class="td user">
+                        <img class="user-image" src="https://github.com/cesar-rieg.png" alt="Imagem de capa do usuário">
+                        <a class="user-link" href="https://github.com/cesar-rieg" target="_blank">
+                            <p class="username">César Rieg</p>
+                            <span>cesar-rieg</span>
+                        </a>
+                    </td>
+                    <td class="td repositories">
+                        76
+                    </td>
+                    <td class="td followers">
+                        9589
+                    </td>
+                    <td class="td">
+                        <button class="btn-remove">&times;</button>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="td user">
+                        <img class="user-image" src="https://github.com/cesar-rieg.png" alt="Imagem de capa do usuário">
+                        <a class="user-link" href="https://github.com/cesar-rieg" target="_blank">
+                            <p class="username">César Rieg</p>
+                            <span>cesar-rieg</span>
+                        </a>
+                    </td>
+                    <td class="td repositories">
+                        76
+                    </td>
+                    <td class="td followers">
+                        9589
+                    </td>
+                    <td class="td">
+                        <button class="btn-remove">&times;</button>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

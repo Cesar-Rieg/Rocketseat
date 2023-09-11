@@ -1,0 +1,72 @@
+.table {
+    width: 100%;
+    border-collapse: collapse;
+
+    /* x y blur spread color*/
+    box-shadow: 0 1rem 2rem -1rem var(--box-shadow-table);
+}
+
+.table * {
+    font-size: 1.4rem;
+    color: var(--text-color);
+}
+
+/* pseudo-class for round top left/right border */
+table th:first-child {
+    border-top-left-radius: .4rem;
+}
+
+table th:last-child {
+    border-top-right-radius: .4rem;
+}
+
+/*
+even = elementos pares 
+odd = elementos ímpares 
+*/
+table tr:nth-child(even){
+    background-color: var(--background-color-table-even-elements);
+}
+
+table tr:nth-child(odd) {
+    background-color: var(--background-color-table-odd-elements);
+}
+
+.th {
+    background: var(--primary-color);
+    text-align: left;
+    font-weight: normal;
+    padding: 1.5rem;
+}
+
+.td {
+    padding: 1.5rem;
+    text-align: left;
+}
+
+.td.user {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.user-image {
+    width: 5rem;
+    height: 5rem;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.user-link {
+    text-decoration: none;
+}
+
+.username {
+    font-weight: bold;
+}
+
+.btn-remove {
+    background: none;   
+    border: none;
+    color: red;
+}
