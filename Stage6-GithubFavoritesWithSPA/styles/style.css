@@ -2,6 +2,7 @@
 @import url("sr-only.css");
 @import url("header.css");
 @import url("table.css");
+@import url("notification-manager.css");
 
 :root {
     font-size: 62.5%;
