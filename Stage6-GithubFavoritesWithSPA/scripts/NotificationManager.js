@@ -7,7 +7,7 @@ export class NotificationManager {
         this.createNotificationElement(isValid, message);
     }
 
-    static closeNotification() {
+    static closeNotification_Unused() {
         const button = document.querySelector("button-open");
         const notification = document.querySelector(".notification");
 
