@@ -10,6 +10,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 
+    <script src="./scripts/main.js" type="module" defer></script>
+
     <title>Github Favorites</title>
 </head>
 <body>
@@ -19,7 +21,7 @@
             <div class="header-search">
                 <label for="github-user" class="sr-only">Usuário do Github</label>
                 <input id="github-user" class="input-search" type="text" placeholder="Usuário do Github">
-                <button class="btn-search">&plus;</button>
+                <button id="btn-search" class="btn-search">&plus;</button>
             </div>
         </header>
         <table class="table">
@@ -31,46 +33,7 @@
                     <th class="th"></th>
                 </tr>
             </thead>
-            <tbody class="tbody">
-                <tr>
-                    <td class="td user">
-                        <img class="user-image" src="https://github.com/cesar-rieg.png" alt="Imagem de capa do usuário">
-                        <a class="user-link" href="https://github.com/cesar-rieg" target="_blank">
-                            <p class="username">César Rieg</p>
-                            <span>cesar-rieg</span>
-                        </a>
-                    </td>
-                    <td class="td repositories">
-                        76
-                    </td>
-                    <td class="td followers">
-                        9589
-                    </td>
-                    <td class="td">
-                        <button class="btn-remove">&times;</button>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td class="td user">
-                        <img class="user-image" src="https://github.com/cesar-rieg.png" alt="Imagem de capa do usuário">
-                        <a class="user-link" href="https://github.com/cesar-rieg" target="_blank">
-                            <p class="username">César Rieg</p>
-                            <span>cesar-rieg</span>
-                        </a>
-                    </td>
-                    <td class="td repositories">
-                        76
-                    </td>
-                    <td class="td followers">
-                        9589
-                    </td>
-                    <td class="td">
-                        <button class="btn-remove">&times;</button>
-                    </td>
-                </tr>
-
-            </tbody>
+            <tbody class="tbody"></tbody>
         </table>
     </div>
 </body>

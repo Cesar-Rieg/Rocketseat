@@ -69,4 +69,6 @@ table tr:nth-child(odd) {
     background: none;   
     border: none;
     color: red;
+    cursor: pointer;
+    font-weight: bold;
 }
