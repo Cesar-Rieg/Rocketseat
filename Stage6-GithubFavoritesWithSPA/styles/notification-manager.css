@@ -1,0 +1,53 @@
+:root {
+    --primary-color: #000;
+    --text-color: #000;
+    --border-radius-notification-color: #ccc;
+}
+  
+.success-notification {
+    --primary-color: green;
+}
+  
+.error-notification {
+    --primary-color: red;
+}
+  
+.notification.show{
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0);
+}
+
+.notification {
+    display: inline-flex;
+    flex-direction: column;
+    padding: 1.5rem 2rem;
+    border: 1px solid #CCC;
+    border-radius: 5px;
+    width: 250px;
+    
+    position: absolute;
+    bottom: 3rem;
+    left: 3rem;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(-250px);
+    transition: transform .7s;
+}
+  
+.tittle-notification {
+    font-size: 1.8rem;
+    color: var(--primary-color);
+    margin-bottom: .2rem;
+}
+  
+.hr-notification {
+    color: var(--primary-color);
+    margin-bottom: .4rem;
+}
+  
+.message-notification {
+    font-size: 1.6rem;
+    line-height: 1.8rem;
+    color: var(--text-color);
+}

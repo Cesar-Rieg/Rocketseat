@@ -1,5 +1,6 @@
 import * as CONSTANTS from './constants.js';
 import { GithubUser } from './GithubUser.js';
+import { NotificationManager } from './NotificationManager.js';
 
 
 export class Favorites {
@@ -19,6 +20,7 @@ export class Favorites {
 
         this.update();
         this.setEntityToLocalStorage();
+        NotificationManager.showNotification(true, `O usuário ${entity.login} foi removido com sucesso!`);
     }
 }
 
@@ -116,9 +118,10 @@ export class FavoritesView extends Favorites {
 
             this.update();
             this.setEntityToLocalStorage();
+            NotificationManager.showNotification(true, `O usuário ${username} foi adicionado com sucesso!`);
         }
         catch(error) {
-            alert(error.message);
+            NotificationManager.showNotification(false, error.message);
         }
     }
 
