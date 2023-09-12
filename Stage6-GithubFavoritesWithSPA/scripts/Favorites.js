@@ -27,9 +27,9 @@ export class Favorites {
 export class FavoritesView extends Favorites {
     constructor(root) {
         super(root);
-        
+
         this.tBody = this.root.querySelector("tbody");
-        
+
         this.update();
         this.onClickAddGithubUser();
     }
@@ -39,7 +39,7 @@ export class FavoritesView extends Favorites {
             if (confirm(`Tem certeza que deseja remover o perfil de ${entity.name}?`)) {
                 this.delete(entity);
             }
-        }) 
+        })
     }
 
     createTableRow(entity) {
@@ -47,7 +47,7 @@ export class FavoritesView extends Favorites {
 
         tr.innerHTML = this.getTableRowElement(entity);
 
-        this.addEventListenerOnButtonRemoveEntity(tr, entity); 
+        this.addEventListenerOnButtonRemoveEntity(tr, entity);
 
         return tr;
     }
@@ -129,7 +129,7 @@ export class FavoritesView extends Favorites {
         this.removeAllTableRow();
 
         this.entities.forEach((entity) => {
-            const row = this.createTableRow(entity);          
+            const row = this.createTableRow(entity);
             this.tBody.append(row);
         })
 
