@@ -1,3 +1,5 @@
+const ApplicationError = require("../utils/ApplicationError.js");
+
 const OK = 200;
 const CREATED = 201;
 
@@ -12,6 +14,10 @@ class UserController {
 
     Create(request, response) {
         const { name, email, password } = request.body;
+
+        if (!name){
+            throw new ApplicationError("O campo nome é obrigatório.");
+        }
 
         // response.send() Retorna no formato HTML
         //response.send(`Você chamou método POST. ${message}`);
