@@ -28,9 +28,7 @@ userRoutes.get("/", (request, response) => {
     response.send(`Página: ${page}. Quantidade de registros por página: ${limit}.`);
 });
 
-userRoutes.post("/", middlewareApplication, (request, response) => {
-    userController.Create(request, response);
-});
-
+userRoutes.post("/", middlewareApplication, userController.Create);
+userRoutes.put("/:id", middlewareApplication, userController.Update);
 
 module.exports = userRoutes;
