@@ -91,7 +91,8 @@ class UserController {
                 users
             WHERE
                 email = (?)`,
-            [email]);
+            [email]
+        );
 
         if (userWithUpdatedEmail != null && userWithUpdatedEmail.id != user.id){
             throw new ApplicationError("Este e-mail já está em uso.");

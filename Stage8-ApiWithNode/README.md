@@ -10,6 +10,14 @@ Para criar o projeto:
 8 = "npm install bcryptjs --save" --biblioteca para criptografar senha
 9 - "npm install date-and-time --save" => biblioteca DateTime
 
+10 - "npm install knex --save" => biblioteca QueryBuilder
+11 - "npx knex init" => para criar o arquivo de configuração do Knex
+
 Após clonar, deve se executar:
 
 1 - "npm install"
+2 - "npx knex migrate:make creteTags"
+3 - "npx knex migrate:latest" para o Knex aplicar a ultima migration
+
+NPM => ferramenta utilizada para instalar pacotes.
+NPX => ferramenta utilizada para executar pacotes.
