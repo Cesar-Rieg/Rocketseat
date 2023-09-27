@@ -30,8 +30,7 @@ class UserController {
             FROM
                 users
             WHERE
-                email = (?)`,
-            [email]
+                email = '${email}'`
         );
 
         if (checkUserExists){
@@ -40,12 +39,19 @@ class UserController {
 
         const hashedPassword = await hash(password, SALT_HASH);
 
+        let sqlParameters = [
+            name, 
+            email
+        ];
+
+        sqlParameters = [...sqlParameters, hashedPassword]; 
+
         await database.run(`
             INSERT INTO users
                 (name, email, password)
             VALUES
                 (?, ?, ?)`,
-            [name, email, hashedPassword]
+            sqlParameters
         );
 
         return response.status(CREATED).json();
