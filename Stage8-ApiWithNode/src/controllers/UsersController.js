@@ -1,11 +1,13 @@
 const { hash, compare } = require("bcryptjs");
 const ApplicationError = require("../utils/ApplicationError.js");
-const sqliteConnection = require("../database/sqlite");
 const dateTimeFormat = require('date-and-time');
+const UserServices = require("../services/UserServices");
 
 const OK = 200;
 const CREATED = 201;
 const SALT_HASH = 8;
+const MENSAGEM_ERRO_CADASTRO = "Não foi possível completar o cadastro.";
+const MENSAGEM_ERRO_EDICAO = "Não foi possível completar a edição.";
 
 class UserController {
     /*
@@ -17,111 +19,83 @@ class UserController {
     */
 
     async Create(request, response) {
+        const _userServices = new UserServices();
         const { name, email, password } = request.body;
+       
+        const userDto = {
+            Name: name, 
+            Email: email,
+            Password: password,
+            HashedPassword: await hash(password, SALT_HASH)
+        };
 
-        if (!name){
-            throw new ApplicationError("O campo nome é obrigatório.");
+        if (!userDto.Name){
+            throw new ApplicationError(`${MENSAGEM_ERRO_CADASTRO} O campo nome é obrigatório.`);
         }
 
-        const database = await sqliteConnection();
-        const checkUserExists = await database.get(`
-            SELECT
-                *
-            FROM
-                users
-            WHERE
-                email = '${email}'`
-        );
-
-        if (checkUserExists){
-            throw new ApplicationError("Este e-mail já está em uso.");
+        let user = await _userServices.UserExistsAsync(userDto);
+        if (user != null){
+            throw new ApplicationError(`${MENSAGEM_ERRO_CADASTRO} Este e-mail já está em uso.`);
         }
 
-        const hashedPassword = await hash(password, SALT_HASH);
-
-        let sqlParameters = [
-            name, 
-            email
-        ];
-
-        sqlParameters = [...sqlParameters, hashedPassword]; 
-
-        await database.run(`
-            INSERT INTO users
-                (name, email, password)
-            VALUES
-                (?, ?, ?)`,
-            sqlParameters
-        );
-
-        return response.status(CREATED).json();
+        await _userServices.CreateUserAsync(userDto);
+        
+        return response.status(CREATED).json({
+            Message: `Usuário '${userDto.Name}' criado com sucesso!`
+        });
     }
 
     async Update(request, response){
+        const _userServices = new UserServices();
         const { name, email, password, old_password } = request.body;
         const { id } = request.params;
 
-        const database = await sqliteConnection();
-        const user = await database.get(`
-            SELECT
-                *
-            FROM
-                users
-            WHERE id = (?)`,
-            [id]
-        );
+        const userRequestDto = {
+            Id: id,
+            Name: name, 
+            Email: email,
+            Password: password,
+            OldPassword: old_password
+        };
 
-        if (!user){
-            throw new ApplicationError("Usuário não encontrado.");
+        if (userRequestDto.Password && !userRequestDto.OldPassword){
+            throw new ApplicationError(`${MENSAGEM_ERRO_EDICAO} Você precisa informar a senha antiga para definir a nova senha.`);
         }
 
-        if (password && !old_password){
-            throw new ApplicationError("Você precisa informar a senha antiga para definir a nova senha.");
+        let userToUpdate = await _userServices.GetUserByIdAsync(userRequestDto);
+        if (!userToUpdate){
+            throw new ApplicationError(`${MENSAGEM_ERRO_EDICAO} Usuário não encontrado.`);
         }
 
-        if (password && old_password){
-            // const ckeckOldPassword = user.password == this.GeneratePasswordHash(old_password);
-            const ckeckOldPassword = await compare(old_password, user.password);
+        if (userRequestDto.Password && userRequestDto.OldPassword){
+            const currentPasswordEqualsOldPassword = await compare(userRequestDto.OldPassword, userToUpdate.password);
 
-            if (!ckeckOldPassword){
-                throw new ApplicationError("O campo senha antiga não confere com a senha atual do usuário.");
+            if (!currentPasswordEqualsOldPassword){
+                throw new ApplicationError(`${MENSAGEM_ERRO_EDICAO} O campo senha antiga não confere com a senha atual do usuário.`);
             }
-
-            user.password = await hash(password, SALT_HASH);
         }
 
-        const userWithUpdatedEmail = await database.get(`
-            SELECT
-                *
-            FROM
-                users
-            WHERE
-                email = (?)`,
-            [email]
-        );
-
-        if (userWithUpdatedEmail != null && userWithUpdatedEmail.id != user.id){
-            throw new ApplicationError("Este e-mail já está em uso.");
+        let userByEmail = await _userServices.GetUserByEmailAsync(userRequestDto);
+        if (userByEmail != null && userByEmail.id != userToUpdate.id){
+            throw new ApplicationError(`${MENSAGEM_ERRO_EDICAO} Este e-mail já está em uso.`);
         }
 
-        user.name = name ?? user.name;
-        user.email = email ?? user.email;
-        user.updated_at = dateTimeFormat.format(
-            new Date(), 'YYYY-MM-DD HH:mm:ss'
-        );
+        const userToUpdateDto = {
+            Id: userRequestDto.Id,
+            Name: userRequestDto.Name ?? userToUpdate.name,
+            Email: userRequestDto.Email ?? userToUpdate.email,
+            Password: userRequestDto.Password,
+            HashedPassword: await hash(userRequestDto.Password, SALT_HASH),
+            UpdatedAt: dateTimeFormat.format(
+                new Date(), 'YYYY-MM-DD HH:mm:ss'
+            )
+        };
 
-        await database.run(`
-            UPDATE users SET
-                name = ?,
-                email = ?,
-                password = ?,
-                updated_at = ?
-            WHERE
-                id = ?`,
-            [user.name, user.email, user.password, user.updated_at, id]
-        );
+        await _userServices.UpdateUserAsync(userToUpdateDto);
 
-        return response.status(OK).json();
+        return response.status(OK).json({
+            Message: `Usuário '${userToUpdateDto.Name}' editado com sucesso!`
+        });
     }
 
     async GeneratePasswordHash(password){
