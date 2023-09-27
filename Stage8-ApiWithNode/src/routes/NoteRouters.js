@@ -8,7 +8,8 @@ function middlewareApplication(request, response, next){
     console.log("Você passou pelo Middlleware do NoteRouters.");
 
     if (!request.body.isAdmin){
-        return response.status(401).json({ message: "User unauthorized." });
+        console.info("Não foi informado a propriedade 'isAdmin', do json da requisição.");
+        //return response.status(401).json({ message: "User unauthorized." });
     }
 
     next();
