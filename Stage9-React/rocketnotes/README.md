@@ -10,6 +10,7 @@ Currently, two official plugins are available:
 
 -============================-
 - Para criar um projeto igual este:
-- 1. "npm create vite@latest"
-- 2. cd diretorio
-- 3. "npm install"
+- "npm create vite@latest"
+- cd diretorio
+- "npm install"
+- "npm install --save styled-components" para instalar a biblioteca Styled Components
