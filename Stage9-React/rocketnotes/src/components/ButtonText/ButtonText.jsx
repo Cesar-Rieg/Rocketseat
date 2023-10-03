@@ -5,7 +5,7 @@ import { Container } from "./ButtonText.js";
 export function ButtonText({tittle, isActive = false, ...rest}) {
 
     return (
-        <Container type="button" $active={isActive.toString()} {...rest}>
+        <Container type="button" $isactive={isActive.toString()} {...rest}>
             {tittle}
         </Container>
     );
