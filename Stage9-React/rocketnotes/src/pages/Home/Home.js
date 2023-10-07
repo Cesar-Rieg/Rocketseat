@@ -7,7 +7,7 @@ export const Container = styled.div`
     display: grid;
     grid-template-columns: 250px auto;
     grid-template-rows: 105px 128px auto 64px;
-    grid-template-areas: 
+    grid-template-areas:
         "brand header"
         "menu search"
         "menu content"
@@ -42,7 +42,7 @@ export const Menu = styled.ul`
 
     padding-top: 64px;
     text-align: center;
-    
+
     > li {
         margin-bottom: 24px;
     }
@@ -50,6 +50,7 @@ export const Menu = styled.ul`
 
 export const Search = styled.div`
     grid-area: search;
+    padding: 64px 64px 0;
 `;
 
 export const Content = styled.div`
