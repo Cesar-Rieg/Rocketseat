@@ -2,10 +2,10 @@
 
 import { Container } from "../Tag/Tag.js";
 
-export function Tag({tittle}) {
-    
+export function Tag({tittle, ...rest}) {
+
     return (
-        <Container>
+        <Container {...rest}>
             {tittle}
         </Container>
     );
