@@ -4,7 +4,7 @@ import { Tag } from "../Tag/Tag.jsx";
 export function Note({data, ...rest}){
     return (
         <Container {...rest}>
-            <h1>{data.titulo}</h1>
+            <h1>{data.tittle}</h1>
             {
                 data.tags &&
                 <footer>
