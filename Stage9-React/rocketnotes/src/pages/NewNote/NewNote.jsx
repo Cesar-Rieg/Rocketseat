@@ -4,6 +4,7 @@ import { TextArea } from '../../components/TextArea/TextArea.jsx';
 import { NoteItem } from '../../components/NoteItem/NoteItem.jsx';
 import { Section } from '../../components/Section/Section.jsx';
 import { Button } from '../../components/Button/Button.jsx';
+import { Link } from 'react-router-dom';
 
 import { Container, Form } from './NewNote.js';
 
@@ -18,7 +19,7 @@ export function NewNote(){
 
                     <header>
                         <h1>Criar nota</h1>
-                        <a href="/">Voltar</a>
+                        <Link to="/">Voltar</Link>
                     </header>
 
                     <Input

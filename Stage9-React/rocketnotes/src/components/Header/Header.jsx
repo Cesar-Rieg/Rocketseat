@@ -4,7 +4,7 @@ import { Container, Profile, Logout } from "./Header";
 export function Header() {
     return (
         <Container>
-            <Profile>
+            <Profile to="/profile">
                 <img
                     src="https://github.com/Cesar-Rieg.png"
                     alt="Foto do usuário"/>

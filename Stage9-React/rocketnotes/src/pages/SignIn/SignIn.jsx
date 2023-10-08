@@ -1,5 +1,6 @@
 import { Container, Form, Background } from './SignIn.js';
 
+import { Link } from 'react-router-dom';
 import { FiMail, FiLock } from 'react-icons/fi';
 
 import { Input } from '../../components/Input/Input.jsx';
@@ -24,7 +25,7 @@ export function SignIn(){
                 />
                 <Button tittle="Entrar"/>
 
-                <a href="javascript:">Criar conta</a>
+                <Link to="/sign-up">Criar conta</Link>
             </Form>
             <Background/>
         </Container>

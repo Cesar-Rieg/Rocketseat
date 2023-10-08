@@ -4,7 +4,7 @@ import { Note } from '../../components/Note/Note.jsx';
 import { Input } from '../../components/Input/Input.jsx';
 import { Section } from '../../components/Section/Section.jsx';
 import { ButtonText } from '../../components/ButtonText/ButtonText.jsx';
-import {FiPlus, FiSearch} from 'react-icons/fi';
+import { FiPlus, FiSearch } from 'react-icons/fi';
 
 export function Home() {
 
@@ -38,7 +38,7 @@ export function Home() {
                 </Section>
             </Content>
 
-            <NewNote>
+            <NewNote to="new-note">
                 <FiPlus/>
                 Criar nota
             </NewNote>
