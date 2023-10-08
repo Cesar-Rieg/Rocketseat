@@ -6,11 +6,13 @@ const ApplicationError = require("./utils/ApplicationError.js");
 const HttpStatusCode = require("./httpStatusCode/HttpStatusCode.js");
 const express = require("express");
 const routes = require("./routes/index.js");
+const UploadConfig = require("./configs/FileUpload.js");
 
 const app = express();
 // Necessário para api receber os dados em formato JSON por POST
 app.use(express.json());
 app.use(routes);
+app.use("/files", express.static(UploadConfig.UPLOADS_FOLDER));
 
 migrationsRun();
 
@@ -36,11 +38,6 @@ app.use((error, request, response, next) => {
 app.listen(PORT, () => {
     console.log(`Server is running on Port ${PORT}`);
 });
-
-
-
-
-
 
 
 // Get - Requisitar por route params

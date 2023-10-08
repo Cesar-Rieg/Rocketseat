@@ -1,12 +1,12 @@
 const sqliteConnection = require("../database/sqlite");
 
 class UserServices {
-    
+
     async CreateUserAsync(userDto){
         const database = await sqliteConnection();
-        
+
         let sqlParameters = [
-            userDto.Name, 
+            userDto.Name,
             userDto.Email,
             userDto.HashedPassword
         ];
@@ -32,7 +32,7 @@ class UserServices {
                 *
             FROM
                 users
-            WHERE 
+            WHERE
                 id = (?)`,
             sqlParameter
         );
@@ -40,7 +40,7 @@ class UserServices {
 
     async GetUserByEmailAsync(userDto){
         const database = await sqliteConnection();
-        
+
         let sqlParameters = [
             userDto.Email
         ];
@@ -75,6 +75,25 @@ class UserServices {
                 updated_at = ?
             WHERE
                 id = ?`,
+            sqlParameters
+        );
+    }
+
+    async UpdateUserAvatarAsync(userDto) {
+        const database = await sqliteConnection();
+
+        let sqlParameters = [
+            userDto.Avatar,
+            userDto.UpdatedAt,
+            userDto.Id
+        ]
+
+        return await database.run(`
+            UPDATE users SET
+                avatar = ?,
+                updated_at = ?
+            WHERE
+                id = ? `,
             sqlParameters
         );
     }

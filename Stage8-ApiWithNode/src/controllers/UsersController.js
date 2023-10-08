@@ -1,6 +1,6 @@
 const { hash, compare } = require("bcryptjs");
 const ApplicationError = require("../utils/ApplicationError.js");
-const dateTimeFormat = require('date-and-time');
+const DateTimeExtensions = require("../extensions/DateTimeExtensions.js");
 const UserServices = require("../services/UserServices");
 
 const OK = 200;
@@ -47,6 +47,7 @@ class UserController {
 
     async Update(request, response){
         const _userServices = new UserServices();
+        const _dateTimeExtensions = new DateTimeExtensions();
         const { name, email, password, old_password } = request.body;
         const user_id = request.user.id;
 
@@ -86,9 +87,7 @@ class UserController {
             Email: userRequestDto.Email ?? userToUpdate.email,
             Password: userRequestDto.Password,
             HashedPassword: await hash(userRequestDto.Password, SALT_HASH),
-            UpdatedAt: dateTimeFormat.format(
-                new Date(), 'YYYY-MM-DD HH:mm:ss'
-            )
+            UpdatedAt: _dateTimeExtensions.DateTimeNow()
         };
 
         await _userServices.UpdateUserAsync(userToUpdateDto);
