@@ -9,8 +9,6 @@ function EnsureAuthenticated(request, response, next) {
     const _dateTimeExtensions = new DateTimeExtensions();
     const authHeader = request.headers.authorization;
 
-    console.log(authHeader);
-
     if (!authHeader)
         throw new ApplicationError("JWT Token não informado.", HttpStatusCode.Unauthorized);
 
