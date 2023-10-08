@@ -14,6 +14,7 @@ Para criar o projeto:
 11 - "npx knex init" => para criar o arquivo de configuração do Knex
 
 12 - "npm install jsonwebtoken" instalar biblioteca JWT
+13 - "npm install multer" biblioteca para tratar arquivos
 
 Após clonar, deve se executar:
 
