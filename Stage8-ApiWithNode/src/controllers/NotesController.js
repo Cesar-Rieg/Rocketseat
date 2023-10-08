@@ -1,11 +1,12 @@
 const knex = require("../database/knex");
+const HttpStatusCode = require("../httpStatusCode/HttpStatusCode");
 const ApplicationError = require("../utils/ApplicationError");
 
 
 class NotesController {
     async Create(request, response){
         const { tittle, description, tags, links } = request.body;
-        const { user_id } = request.params;
+        const user_id = request.user.id;
 
         // knex retorna o id inserido em um array na posição 0 (retorno[0])
         const [note_id] = await knex("notes").insert({
@@ -66,11 +67,12 @@ class NotesController {
 
         await knex("notes").where({ id }).delete();
 
-        return response.status(200).json();
+        return response.status(HttpStatusCode.Ok).json();
     }
 
     async Index(request, response){
-        const { user_id, tittle, tags } = request.query;
+        const { tittle, tags } = request.query;
+        const user_id = request.user.id;
 
         let notes;
 
@@ -108,7 +110,7 @@ class NotesController {
             }
         });
 
-        return response.status(200).json(notesWithTags);
+        return response.status(HttpStatusCode.Ok).json(notesWithTags);
     }
 }
 

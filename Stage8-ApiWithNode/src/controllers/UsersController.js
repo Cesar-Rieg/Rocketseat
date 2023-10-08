@@ -21,9 +21,9 @@ class UserController {
     async Create(request, response) {
         const _userServices = new UserServices();
         const { name, email, password } = request.body;
-       
+
         const userDto = {
-            Name: name, 
+            Name: name,
             Email: email,
             Password: password,
             HashedPassword: await hash(password, SALT_HASH)
@@ -39,7 +39,7 @@ class UserController {
         }
 
         await _userServices.CreateUserAsync(userDto);
-        
+
         return response.status(CREATED).json({
             Message: `Usuário '${userDto.Name}' criado com sucesso!`
         });
@@ -48,11 +48,11 @@ class UserController {
     async Update(request, response){
         const _userServices = new UserServices();
         const { name, email, password, old_password } = request.body;
-        const { id } = request.params;
+        const user_id = request.user.id;
 
         const userRequestDto = {
-            Id: id,
-            Name: name, 
+            Id: user_id,
+            Name: name,
             Email: email,
             Password: password,
             OldPassword: old_password
