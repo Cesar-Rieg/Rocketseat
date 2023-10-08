@@ -13,6 +13,8 @@ Para criar o projeto:
 10 - "npm install knex --save" => biblioteca QueryBuilder
 11 - "npx knex init" => para criar o arquivo de configuração do Knex
 
+12 - "npm install jsonwebtoken" instalar biblioteca JWT
+
 Após clonar, deve se executar:
 
 1 - "npm install"
