@@ -1,8 +1,10 @@
+const HttpStatusCode = require("../httpStatusCode/HttpStatusCode.js");
+
 class ApplicationError {
     Message;
     StatusCode;
 
-    constructor(Message, StatusCode = 400){
+    constructor(Message, StatusCode = HttpStatusCode.BadRequest){
         this.Message = Message;
         this.StatusCode = StatusCode;
     }

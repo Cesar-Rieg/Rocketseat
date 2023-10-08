@@ -3,6 +3,7 @@ const PORT = 3333;
 require("express-async-errors");
 const migrationsRun = require("./database/sqlite/migrations");
 const ApplicationError = require("./utils/ApplicationError.js");
+const HttpStatusCode = require("./httpStatusCode/HttpStatusCode.js");
 const express = require("express");
 const routes = require("./routes/index.js");
 
@@ -24,9 +25,9 @@ app.use((error, request, response, next) => {
 
     console.error(error);
 
-    return response.status(500).json({
+    return response.status(HttpStatusCode.InternalServerError).json({
         Status: "Error",
-        StatusCode: 500,
+        StatusCode: HttpStatusCode,
         Message: "Internal server error"
     })
 });
