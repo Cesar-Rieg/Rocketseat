@@ -7,7 +7,7 @@ import { Button } from '../../components/Button/Button.jsx';
 
 import { Container, Form } from './NewNote.js';
 
-export default function NewNote(){
+export function NewNote(){
     return (
         <Container>
 

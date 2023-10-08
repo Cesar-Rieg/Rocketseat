@@ -6,7 +6,7 @@ import { Section } from '../../components/Section/Section.jsx';
 import { ButtonText } from '../../components/ButtonText/ButtonText.jsx';
 import {FiPlus, FiSearch} from 'react-icons/fi';
 
-export default function Home() {
+export function Home() {
 
     return (
         <Container>

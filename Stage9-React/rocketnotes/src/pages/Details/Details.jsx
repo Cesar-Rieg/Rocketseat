@@ -5,7 +5,7 @@ import { Header } from '../../components/Header/Header.jsx';
 import { Section } from '../../components/Section/Section.jsx';
 import { Tag } from '../../components/Tag/Tag.jsx';
 
-export default function Details(){
+export function Details(){
   return (
     <Container>
         <Header/>
@@ -21,7 +21,7 @@ export default function Details(){
             <p>
               Lorem ipsum dolor sit amet consectetur, adipisicing elit. In sit tempora cumque neque, itaque fuga error totam ut suscipit praesentium! Impedit earum, nostrum voluptate voluptates repellat totam veritatis quos itaque!
             </p>
-            
+
             <Section tittle="Links úteis">
               <Links>
                 <li>

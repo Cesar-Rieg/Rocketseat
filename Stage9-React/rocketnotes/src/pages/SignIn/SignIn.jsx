@@ -5,7 +5,7 @@ import { FiMail, FiLock } from 'react-icons/fi';
 import { Input } from '../../components/Input/Input.jsx';
 import { Button } from '../../components/Button/Button.jsx';
 
-export default function SignIn(){
+export function SignIn(){
     return (
         <Container>
             <Form>

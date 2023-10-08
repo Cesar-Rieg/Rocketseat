@@ -4,7 +4,7 @@ import { Button } from "../../components/Button/Button.jsx";
 
 import { FiArrowLeft, FiUser, FiMail, FiLock, FiCamera } from "react-icons/fi";
 
-export default function Profile(){
+export function Profile(){
     return (
         <Container>
             <header>
