@@ -33,7 +33,7 @@ class UserController {
             throw new ApplicationError(`${MENSAGEM_ERRO_CADASTRO} O campo nome é obrigatório.`);
         }
 
-        let user = await _userServices.UserExistsAsync(userDto);
+        let user = await _userServices.GetUserByEmailAsync(userDto);
         if (user != null){
             throw new ApplicationError(`${MENSAGEM_ERRO_CADASTRO} Este e-mail já está em uso.`);
         }
