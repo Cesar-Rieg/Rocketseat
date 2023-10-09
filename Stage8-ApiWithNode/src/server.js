@@ -1,4 +1,4 @@
-const Environment = require("./environment/Environment.js");
+const PORT = 3333;
 
 require("express-async-errors");
 const migrationsRun = require("./database/sqlite/migrations");
@@ -37,8 +37,8 @@ app.use((error, request, response, next) => {
 });
 
 
-app.listen(Environment.PORT, () => {
-    console.log(`Server is running on Port ${Environment.PORT}`);
+app.listen(PORT, () => {
+    console.log(`Server is running on Port ${PORT}`);
 });
 
 
