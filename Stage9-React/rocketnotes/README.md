@@ -15,3 +15,4 @@ Currently, two official plugins are available:
 - "npm install"
 - "npm install --save styled-components" para instalar a biblioteca Styled Components
 - "npm install react-router-dom"
+- "npm install axios"
