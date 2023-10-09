@@ -8,14 +8,16 @@ class UserServices {
         let sqlParameters = [
             userDto.Name,
             userDto.Email,
-            userDto.HashedPassword
+            userDto.HashedPassword,
+            userDto.CreatedAt,
+            userDto.UpdatedAt
         ];
 
         return await database.run(`
             INSERT INTO users
-                (name, email, password)
+                (name, email, password, created_at, updated_at)
             VALUES
-                (?, ?, ?)`,
+                (?, ?, ?, ?, ?)`,
             sqlParameters
         );
     }

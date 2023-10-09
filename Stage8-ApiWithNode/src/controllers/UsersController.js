@@ -20,13 +20,16 @@ class UserController {
 
     async Create(request, response) {
         const _userServices = new UserServices();
+        const _dateTimeExtensions = new DateTimeExtensions();
         const { name, email, password } = request.body;
 
         const userDto = {
             Name: name,
             Email: email,
             Password: password,
-            HashedPassword: await hash(password, SALT_HASH)
+            HashedPassword: await hash(password, SALT_HASH),
+            CreatedAt: _dateTimeExtensions.DateTimeNow(),
+            UpdatedAt: _dateTimeExtensions.DateTimeNow()
         };
 
         if (!userDto.Name){
