@@ -8,7 +8,9 @@ const express = require("express");
 const routes = require("./routes/index.js");
 const UploadConfig = require("./configs/FileUpload.js");
 
+const cors = require("cors");
 const app = express();
+app.use(cors());
 // Necessário para api receber os dados em formato JSON por POST
 app.use(express.json());
 app.use(routes);

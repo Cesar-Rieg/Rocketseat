@@ -15,6 +15,7 @@ Para criar o projeto:
 
 12 - "npm install jsonwebtoken" instalar biblioteca JWT
 13 - "npm install multer" biblioteca para tratar arquivos
+14 - "npm install cors"
 
 Após clonar, deve se executar:
 
