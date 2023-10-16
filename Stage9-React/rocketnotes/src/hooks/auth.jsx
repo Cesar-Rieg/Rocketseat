@@ -16,7 +16,7 @@ function AuthProvider({ children }) {
             localStorage.setItem(LOCALSTORAGE_ROCKETNOTES_USER, JSON.stringify(user));
             localStorage.setItem(LOCALSTORAGE_ROCKETNOTES_TOKEN, token);
 
-            api.defaults.headers.authorization = `Bearer ${token}`;
+            api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
             setState({ user, token });
         }
         catch (ex) {
@@ -39,7 +39,7 @@ function AuthProvider({ children }) {
         const tokenFromLocalStorage = localStorage.getItem(LOCALSTORAGE_ROCKETNOTES_TOKEN);
 
         if (userFromLocalStorage && tokenFromLocalStorage){
-            api.defaults.headers.authorization = `Bearer ${tokenFromLocalStorage}`;
+            api.defaults.headers.common['Authorization'] = `Bearer ${tokenFromLocalStorage}`;
             setState({
                 tokenFromLocalStorage,
                 user: JSON.parse(userFromLocalStorage)
