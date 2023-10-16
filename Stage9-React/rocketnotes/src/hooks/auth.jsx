@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import { createContext, useContext, useState, useEffect } from "react";
 import { api } from "../services/ApiServices";
+import { LOCALSTORAGE_ROCKETNOTES_TOKEN, LOCALSTORAGE_ROCKETNOTES_USER } from "../constants/LocalStorageConstants";
 
 export const AuthContext = createContext({});
 
@@ -12,8 +13,8 @@ function AuthProvider({ children }) {
             const response = await api.post("/sessions", {email, password});
             const { user, token } = response.data;
 
-            localStorage.setItem("@rocketnotes:user", JSON.stringify(user));
-            localStorage.setItem("@rocketnotes:token", token);
+            localStorage.setItem(LOCALSTORAGE_ROCKETNOTES_USER, JSON.stringify(user));
+            localStorage.setItem(LOCALSTORAGE_ROCKETNOTES_TOKEN, token);
 
             api.defaults.headers.authorization = `Bearer ${token}`;
             setState({ user, token });
@@ -26,9 +27,16 @@ function AuthProvider({ children }) {
         }
     }
 
+    function signOut() {
+        localStorage.removeItem(LOCALSTORAGE_ROCKETNOTES_USER);
+        localStorage.removeItem(LOCALSTORAGE_ROCKETNOTES_TOKEN);
+
+        setState({});
+    }
+
     useEffect(() => {
-        const userFromLocalStorage = localStorage.getItem("@rocketnotes:user");
-        const tokenFromLocalStorage = localStorage.getItem("@rocketnotes:token");
+        const userFromLocalStorage = localStorage.getItem(LOCALSTORAGE_ROCKETNOTES_USER);
+        const tokenFromLocalStorage = localStorage.getItem(LOCALSTORAGE_ROCKETNOTES_TOKEN);
 
         if (userFromLocalStorage && tokenFromLocalStorage){
             api.defaults.headers.authorization = `Bearer ${tokenFromLocalStorage}`;
@@ -40,7 +48,7 @@ function AuthProvider({ children }) {
     }, []);
 
     return (
-        <AuthContext.Provider value={{ signIn, user: state.user }}>
+        <AuthContext.Provider value={{ signIn, signOut, user: state.user }}>
             {children}
         </AuthContext.Provider>
     );
