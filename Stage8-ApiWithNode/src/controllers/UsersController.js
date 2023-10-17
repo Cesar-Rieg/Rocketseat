@@ -96,6 +96,7 @@ class UserController {
         await _userServices.UpdateUserAsync(userToUpdateDto);
 
         return response.status(OK).json({
+            userByEmail,
             Message: `Usuário '${userToUpdateDto.Name}' editado com sucesso!`
         });
     }
