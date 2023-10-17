@@ -1,4 +1,14 @@
 class DatabaseErrorTranslateServices {
+    GetDatabaseError(error) {
+        if (!error) return;
+
+        let sqlErrorCode = error.errno;
+        let translatedError = this.Translate(sqlErrorCode);
+
+        if (!translatedError) return;
+        
+        return `Ocorreu um erro no Banco de Dados.\r\nCódigo de erro: ${sqlErrorCode}\r\nMensagem: ${translatedError}`;
+    }
     Translate(sqlErrorCode){
         let retorno;
         switch(sqlErrorCode){
@@ -93,7 +103,7 @@ class DatabaseErrorTranslateServices {
                 retorno = 'sqlite3_step() has finished executing';
                 break;
             default: 
-                retorno = 'Undefined Sql Error Code';
+                retorno = null;
                 break;
             }
             

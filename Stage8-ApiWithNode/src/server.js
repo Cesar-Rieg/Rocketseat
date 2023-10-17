@@ -35,8 +35,7 @@ app.use((error, request, response, next) => {
         Status: "Error",
         StatusCode: HttpStatusCode.InternalServerError,
         Message: "Internal server error",
-        DatabaseErrorCode: error.errno,
-        DatabaseErrorMessage: _databaseErrorTranslateServices.Translate(error.errno)
+        DatabaseError: _databaseErrorTranslateServices.GetDatabaseError(error)
     })
 });
 
