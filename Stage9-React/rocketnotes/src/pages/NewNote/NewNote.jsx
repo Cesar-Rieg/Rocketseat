@@ -8,13 +8,20 @@ import { Button } from '../../components/Button/Button.jsx';
 import { Link } from 'react-router-dom';
 
 import { Container, Form } from './NewNote.js';
+import { api } from '../../services/ApiServices.js';
+import { useNavigate } from 'react-router-dom';
 
 export function NewNote(){
+    const [ tittle, setTittle ] = useState("");
+    const [ description, setDescription ] = useState("");
+
     const [ links, setLinks ] = useState([]);
     const [ newLink, setNewLink ] = useState("");
 
     const [ tags, setTags ] = useState([]);
     const [ newTag, setNewTag ] = useState("");
+
+    const navigate = useNavigate();
 
     function handleAddLink() {
         if (!newLink) 
@@ -40,6 +47,28 @@ export function NewNote(){
         setTags(prevState => prevState.filter(tag => tag !== removeTag))
     }
 
+    async function handleNewNote() {
+        if (!tittle || links.length === 0 || tags.length === 0) {
+            return alert("Não foi possível salvar a nota, existem campos obrigatórios.");
+        }
+        if (newLink) {
+            return alert("Existem links em edição. Por favor, verifique.")
+        }
+        if (newTag) {
+            return alert("Existem marcadores em edição. Por favor, verifique.")
+        }
+
+        await api.post("/notes", {
+            tittle,
+            description,
+            links,
+            tags
+        });
+
+        alert("Nota criada com sucesso!");
+        navigate("/");
+    }
+
     return (
         <Container>
 
@@ -55,10 +84,12 @@ export function NewNote(){
 
                     <Input
                         placeholder="Titulo"
+                        onChange={(event) => setTittle(event.target.value)}
                     />
 
                     <TextArea
                         placeholder="Observações"
+                        onChange={(event) => setDescription(event.target.value)}
                     />
 
                     <Section tittle="Links úteis">
@@ -101,7 +132,7 @@ export function NewNote(){
                         </div>
                     </Section>
 
-                    <Button tittle="Salvar"/>
+                    <Button tittle="Salvar" onClick={handleNewNote}/>
 
                 </Form>
             </main>
