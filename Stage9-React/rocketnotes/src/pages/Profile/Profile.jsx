@@ -8,11 +8,21 @@ import { Link } from 'react-router-dom';
 import { FiArrowLeft, FiUser, FiMail, FiLock, FiCamera } from "react-icons/fi";
 
 export function Profile(){
-    const { user } = useAuth();
+    const { user, updateProfile } = useAuth();
     const [ name, setName ] = useState(user.name);
     const [ email, setEmail ] = useState(user.email);
     const [ oldPassword, setOldPassword ] = useState();
     const [ newPassword, setNewPassword ] = useState();
+
+    async function handleUpdate() {
+        const user = {
+            name: name,
+            email: email,
+            old_password: oldPassword, 
+            password: newPassword
+        }
+        await updateProfile({ user });
+    }
 
     return (
         <Container>
@@ -58,7 +68,7 @@ export function Profile(){
                     onChange={(event) => setNewPassword(event.target.value)}
                 />
 
-                <Button tittle="Salvar"/>
+                <Button tittle="Salvar" onClick={handleUpdate}/>
 
             </Form>
         </Container>

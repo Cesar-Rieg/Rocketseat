@@ -34,6 +34,24 @@ function AuthProvider({ children }) {
         setState({});
     }
 
+    async function updateProfile({ user }) {
+        try {
+            const response = await api.put("/users", user);
+            localStorage.setItem(LOCALSTORAGE_ROCKETNOTES_USER, JSON.stringify(response.data.userByEmail));
+            
+            setState({ user, token: state.token });
+            console.log(response);
+
+            alert(response.data.Message);
+        }
+        catch (ex) {
+            if (ex.response) {
+                return alert(ex.response.data.Message);
+            }
+            return alert("Não foi possível atualizar o perfil.")
+        }
+    }
+
     useEffect(() => {
         const userFromLocalStorage = localStorage.getItem(LOCALSTORAGE_ROCKETNOTES_USER);
         const tokenFromLocalStorage = localStorage.getItem(LOCALSTORAGE_ROCKETNOTES_TOKEN);
@@ -48,7 +66,7 @@ function AuthProvider({ children }) {
     }, []);
 
     return (
-        <AuthContext.Provider value={{ signIn, signOut, user: state.user }}>
+        <AuthContext.Provider value={{ signIn, signOut, updateProfile, user: state.user }}>
             {children}
         </AuthContext.Provider>
     );
