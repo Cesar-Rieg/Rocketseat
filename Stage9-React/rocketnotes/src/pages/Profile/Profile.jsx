@@ -14,6 +14,9 @@ export function Profile(){
     const [ oldPassword, setOldPassword ] = useState();
     const [ newPassword, setNewPassword ] = useState();
 
+    const [ avatar, setAvatar ] = useState(user.avatar);
+    const [ avatarFile, setAvatarFile ] = useState(null);
+
     async function handleUpdate() {
         const user = {
             name: name,
@@ -21,7 +24,15 @@ export function Profile(){
             old_password: oldPassword, 
             password: newPassword
         }
-        await updateProfile({ user });
+        await updateProfile({ user, avatarFile });
+    }
+
+    function handleAvatarChanged(event) {
+        const file = event.target.files[0];
+        setAvatarFile(file);
+
+        const imagePreview = URL.createObjectURL(file);
+        setAvatar(imagePreview);
     }
 
     return (
@@ -34,10 +45,10 @@ export function Profile(){
             <Form>
 
                 <Avatar>
-                    <img src="https://github.com/Cesar-Rieg.png" alt="Foto do usuário" />
+                    <img src={avatar} alt="Foto do usuário" />
                     <label htmlFor="avatar">
                         <FiCamera/>
-                        <input id="avatar" type="file" />
+                        <input id="avatar" type="file" onChange={ handleAvatarChanged } />
                     </label>
                 </Avatar>
 

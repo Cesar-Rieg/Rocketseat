@@ -21,7 +21,7 @@ function AuthProvider({ children }) {
         }
         catch (ex) {
             if (ex.response) {
-                return alert(ex.response.data.Message);
+                return alert(getExceptionMessage(ex));
             }
             return alert("Não foi possível realizar o login.")
         }
@@ -34,22 +34,37 @@ function AuthProvider({ children }) {
         setState({});
     }
 
-    async function updateProfile({ user }) {
+    async function updateProfile({ user, avatarFile }) {
         try {
+
+            if (avatarFile) {
+                const fileUploadForm = new FormData();
+                fileUploadForm.append("avatar", avatarFile);
+
+                const response = await api.patch("/users/avatar", fileUploadForm);
+                user.avatar = response.data.avatar;
+            }
+
             const response = await api.put("/users", user);
             localStorage.setItem(LOCALSTORAGE_ROCKETNOTES_USER, JSON.stringify(response.data.userByEmail));
             
             setState({ user, token: state.token });
-            console.log(response);
 
             alert(response.data.Message);
         }
         catch (ex) {
             if (ex.response) {
-                return alert(ex.response.data.Message);
+                return alert(getExceptionMessage(ex));
             }
             return alert("Não foi possível atualizar o perfil.")
         }
+    }
+
+    function getExceptionMessage(ex) {
+        let isDatabaseException = ex.response.data.DatabaseError;
+        return isDatabaseException
+                    ? ex.response.data.DatabaseError
+                    : ex.response.data.Message;
     }
 
     useEffect(() => {
