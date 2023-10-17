@@ -15,6 +15,10 @@ export function Home() {
     const [ tagsSelected, setTagsSelected ] = useState([]);
 
     function handleTagsSelected(tagName) {
+        if (tagName === "Todos"){
+            return setTagsSelected([]);
+        }
+
         const alreadySelected = tagsSelected.includes(tagName);
         if (alreadySelected) {
             const filteredTags = tagsSelected.filter(tag => tag !== tagName);
