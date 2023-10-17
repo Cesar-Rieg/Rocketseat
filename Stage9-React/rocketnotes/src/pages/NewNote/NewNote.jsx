@@ -13,6 +13,9 @@ export function NewNote(){
     const [ links, setLinks ] = useState([]);
     const [ newLink, setNewLink ] = useState("");
 
+    const [ tags, setTags ] = useState([]);
+    const [ newTag, setNewTag ] = useState("");
+
     function handleAddLink() {
         if (!newLink) 
             return alert("O link não pode ser nulo.");
@@ -23,7 +26,18 @@ export function NewNote(){
 
     function handleRemoveLink(removeItem) {
         setLinks(prevState => prevState.filter(link => link !== removeItem))
-        
+    }
+
+    function handleAddTag() {
+        if (!newTag) 
+            return alert("O marcador não pode ser nulo.");
+
+        setTags(prevState => [...prevState, newTag]);
+        setNewTag("");
+    }
+
+    function handleRemoveTag(removeTag) {
+        setTags(prevState => prevState.filter(tag => tag !== removeTag))
     }
 
     return (
@@ -68,12 +82,21 @@ export function NewNote(){
 
                     <Section tittle="Marcadores">
                         <div className="note-tags">
-                            <NoteItem
-                                value="react"
-                            />
+                            {
+                                tags.map((tag, index) => (
+                                    <NoteItem
+                                        key={String(index)}
+                                        value={tag}
+                                        onClick={() => handleRemoveTag(tag)}
+                                    />
+                                ))
+                            }
                             <NoteItem
                                 isNew="true"
                                 placeholder="Nova tag"
+                                onChange={(event) => setNewTag(event.target.value)}
+                                value={newTag}
+                                onClick={handleAddTag}
                             />
                         </div>
                     </Section>
