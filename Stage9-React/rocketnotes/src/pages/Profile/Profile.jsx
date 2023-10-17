@@ -4,7 +4,8 @@ import { Container, Form, Avatar } from "./Profile.js";
 import { Input } from "../../components/Input/Input.jsx";
 import { Button } from "../../components/Button/Button.jsx";
 import { Link } from 'react-router-dom';
-
+import avatarPlaceholder from '../../assets/avatar_placeholder.svg';
+import { api } from "../../services/ApiServices.js";
 import { FiArrowLeft, FiUser, FiMail, FiLock, FiCamera } from "react-icons/fi";
 
 export function Profile(){
@@ -14,7 +15,8 @@ export function Profile(){
     const [ oldPassword, setOldPassword ] = useState();
     const [ newPassword, setNewPassword ] = useState();
 
-    const [ avatar, setAvatar ] = useState(user.avatar);
+    const avatarUrl = user.avatar ? `${api.defaults.baseURL}/files/${user.avatar}` : avatarPlaceholder;
+    const [ avatar, setAvatar ] = useState(avatarUrl);
     const [ avatarFile, setAvatarFile ] = useState(null);
 
     async function handleUpdate() {
@@ -45,7 +47,7 @@ export function Profile(){
             <Form>
 
                 <Avatar>
-                    <img src={avatar} alt="Foto do usuário" />
+                    <img src={avatar ?? avatarPlaceholder} alt="Foto do usuário" />
                     <label htmlFor="avatar">
                         <FiCamera/>
                         <input id="avatar" type="file" onChange={ handleAvatarChanged } />
