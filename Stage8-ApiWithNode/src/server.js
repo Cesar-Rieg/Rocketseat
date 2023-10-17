@@ -7,6 +7,8 @@ const HttpStatusCode = require("./httpStatusCode/HttpStatusCode.js");
 const express = require("express");
 const routes = require("./routes/index.js");
 const UploadConfig = require("./configs/FileUpload.js");
+const DatabaseErrorTranslateServices = require("./services/DatabaseErrorTranslateServices.js");
+const _databaseErrorTranslateServices = new DatabaseErrorTranslateServices();
 
 const cors = require("cors");
 const app = express();
@@ -32,7 +34,9 @@ app.use((error, request, response, next) => {
     return response.status(HttpStatusCode.InternalServerError).json({
         Status: "Error",
         StatusCode: HttpStatusCode.InternalServerError,
-        Message: "Internal server error"
+        Message: "Internal server error",
+        DatabaseErrorCode: error.errno,
+        DatabaseErrorMessage: _databaseErrorTranslateServices.Translate(error.errno)
     })
 });
 
