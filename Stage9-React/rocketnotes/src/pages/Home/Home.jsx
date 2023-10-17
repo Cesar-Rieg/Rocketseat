@@ -9,6 +9,8 @@ import { FiPlus, FiSearch } from 'react-icons/fi';
 import { api } from '../../services/ApiServices.js';
 
 export function Home() {
+    const [ search, setSearch ] = useState("");
+    const [ notes, setNotes ] = useState([]);
     const [ tags, setTags ] = useState([]);
     const [ tagsSelected, setTagsSelected ] = useState([]);
 
@@ -31,6 +33,15 @@ export function Home() {
 
         fetchNotesTags();
     }, []);
+
+    useEffect(() => {
+        async function fetchNotes() {
+            const response = await api.get(`/notes?tittle=${search}&tags=${tagsSelected}`);
+            setNotes(response.data);
+        }
+
+        fetchNotes();
+    }, [tagsSelected, search]);
 
     return (
         <Container>
@@ -62,18 +73,23 @@ export function Home() {
             </Menu>
 
             <Search>
-                <Input placeholder="Pesquisar pelo título" icon={FiSearch}/>
+                <Input 
+                    placeholder="Pesquisar pelo título" 
+                    icon={FiSearch}
+                    onChange={(event) => setSearch(event.target.value)}
+                />
             </Search>
 
             <Content>
                 <Section tittle="Minhas notas">
-                    <Note data={{
-                        tittle: 'React',
-                        tags: [
-                            {id: 1, name: 'React'},
-                            {id: 2, name: 'Vue'},
-                        ]
-                    }}/>
+                    {
+                        notes.map(note => (
+                            <Note 
+                                key={String(note.id)}
+                                data={note}
+                            />
+                        ))
+                    }
                 </Section>
             </Content>
 
