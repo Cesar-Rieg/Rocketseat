@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Header } from '../../components/Header/Header.jsx';
 import { Input } from '../../components/Input/Input.jsx';
 import { TextArea } from '../../components/TextArea/TextArea.jsx';
@@ -9,6 +10,22 @@ import { Link } from 'react-router-dom';
 import { Container, Form } from './NewNote.js';
 
 export function NewNote(){
+    const [ links, setLinks ] = useState([]);
+    const [ newLink, setNewLink ] = useState("");
+
+    function handleAddLink() {
+        if (!newLink) 
+            return alert("O link não pode ser nulo.");
+
+        setLinks(prevState => [...prevState, newLink]);
+        setNewLink("");
+    }
+
+    function handleRemoveLink(removeItem) {
+        setLinks(prevState => prevState.filter(link => link !== removeItem))
+        
+    }
+
     return (
         <Container>
 
@@ -31,12 +48,21 @@ export function NewNote(){
                     />
 
                     <Section tittle="Links úteis">
+                        {
+                            links.map((link, index) => (
+                                <NoteItem
+                                    key={String(index)}
+                                    value={link}
+                                    onClick={() => handleRemoveLink(link)}
+                                />
+                            ))
+                        }
                         <NoteItem
-                            value="https://rocketseat.com.br"
-                        />
-                        <NoteItem
-                            isNew
+                            isNew="true"
                             placeholder="Novo link"
+                            value={newLink}
+                            onChange={(event) => setNewLink(event.target.value)}
+                            onClick={handleAddLink}
                         />
                     </Section>
 
@@ -46,7 +72,7 @@ export function NewNote(){
                                 value="react"
                             />
                             <NoteItem
-                                isNew
+                                isNew="true"
                                 placeholder="Nova tag"
                             />
                         </div>

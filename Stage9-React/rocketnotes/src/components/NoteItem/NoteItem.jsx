@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { Container } from './NoteItem.js';
 
 import { FiPlus, FiX } from 'react-icons/fi';
