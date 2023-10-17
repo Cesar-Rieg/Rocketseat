@@ -62,6 +62,10 @@ class UserController {
             OldPassword: old_password
         };
 
+        if (!userRequestDto.Password && userRequestDto.OldPassword){
+            throw new ApplicationError(`${MENSAGEM_ERRO_EDICAO} Você precisa informar a nova senha.`);
+        }
+
         if (userRequestDto.Password && !userRequestDto.OldPassword){
             throw new ApplicationError(`${MENSAGEM_ERRO_EDICAO} Você precisa informar a senha antiga para definir a nova senha.`);
         }
