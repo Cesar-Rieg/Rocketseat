@@ -62,6 +62,8 @@ class UserController {
             OldPassword: old_password
         };
 
+        const haPasswordAndOldPassword = userRequestDto.Password && userRequestDto.OldPassword;
+
         if (!userRequestDto.Password && userRequestDto.OldPassword){
             throw new ApplicationError(`${MENSAGEM_ERRO_EDICAO} Você precisa informar a nova senha.`);
         }
@@ -92,8 +94,8 @@ class UserController {
             Id: userRequestDto.Id,
             Name: userRequestDto.Name ?? userToUpdate.name,
             Email: userRequestDto.Email ?? userToUpdate.email,
-            Password: userRequestDto.Password,
-            HashedPassword: await hash(userRequestDto.Password, SALT_HASH),
+            Password: haPasswordAndOldPassword ? userRequestDto.Password : userByEmail.password,
+            HashedPassword: haPasswordAndOldPassword ? await hash(userRequestDto.Password, SALT_HASH) : userByEmail.password,
             UpdatedAt: _dateTimeExtensions.DateTimeNow()
         };
 
