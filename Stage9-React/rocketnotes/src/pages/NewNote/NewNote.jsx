@@ -5,7 +5,7 @@ import { TextArea } from '../../components/TextArea/TextArea.jsx';
 import { NoteItem } from '../../components/NoteItem/NoteItem.jsx';
 import { Section } from '../../components/Section/Section.jsx';
 import { Button } from '../../components/Button/Button.jsx';
-import { Link } from 'react-router-dom';
+import { ButtonText } from '../../components/ButtonText/ButtonText.jsx';
 
 import { Container, Form } from './NewNote.js';
 import { api } from '../../services/ApiServices.js';
@@ -30,6 +30,14 @@ export function NewNote(){
         setLinks(prevState => [...prevState, newLink]);
         setNewLink("");
     }
+
+    function handleBackToPreviousPage() {
+        if (tittle || description || links.length > 0 || tags.length > 0){
+            const confirm = window.confirm("Tem certeza que deseja voltar?\r\nOs dados informados serão descartados.");
+            if (!confirm) return;
+        }
+        navigate(-1);
+      } 
 
     function handleRemoveLink(removeItem) {
         setLinks(prevState => prevState.filter(link => link !== removeItem))
@@ -79,7 +87,10 @@ export function NewNote(){
 
                     <header>
                         <h1>Criar nota</h1>
-                        <Link to="/">Voltar</Link>
+                        <ButtonText 
+                            tittle="Voltar"
+                            onClick={handleBackToPreviousPage}
+                        />
                     </header>
 
                     <Input
