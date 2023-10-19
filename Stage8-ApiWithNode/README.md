@@ -17,6 +17,8 @@ Para criar o projeto:
 13 - "npm install multer" biblioteca para tratar arquivos
 14 - "npm install cors"
 
+15 - "npm install dotenv --save"
+
 Após clonar, deve se executar:
 
 1 - "npm install"
