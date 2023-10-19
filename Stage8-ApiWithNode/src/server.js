@@ -1,6 +1,8 @@
-const PORT = 3333;
+const PORT = process.env.PORT || 3000;
 
 require("express-async-errors");
+require("dotenv/config");
+
 const migrationsRun = require("./database/sqlite/migrations");
 const ApplicationError = require("./utils/ApplicationError.js");
 const HttpStatusCode = require("./httpStatusCode/HttpStatusCode.js");
