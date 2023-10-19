@@ -18,6 +18,8 @@ Para criar o projeto:
 14 - "npm install cors"
 
 15 - "npm install dotenv --save"
+16 - "npx pm2 init" para instalar o gerenciador de lifetime API
+17 - "npm install pm2"
 
 Após clonar, deve se executar:
 
