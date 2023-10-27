@@ -43,6 +43,7 @@ export const User = styled.div`
     > small {
         color: ${({ theme }) => theme.COLORS.GRAY_600};
         font-size: 14px;
+        text-transform: capitalize;
 
         display: flex;
         align-items: center;
