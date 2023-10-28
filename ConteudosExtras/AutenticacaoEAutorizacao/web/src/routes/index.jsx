@@ -16,7 +16,11 @@ export function Routes() {
   useEffect(() => {
     api
       .get("/users/validator")
-      .catch((ex) => signOut());
+      .catch((ex) => {
+        if (ex.response?.status === 401){
+          signOut()
+        }
+      });
   }, []);
 
   function AccessRoute() {
