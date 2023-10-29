@@ -5,16 +5,16 @@ export const Container = styled.button`
   color: ${({ theme }) => theme.COLORS.GRAY_100};
   height: 44px;
   border: 0;
-  padding: 0 16px;
-  border-radius: 7px;
-  font-size: 14px;
+  padding: 0 1.6rem;
+  border-radius: .7rem;
+  font-size: 1.4rem;
   
   display: flex;
   align-items: center;
   gap: 7px;
 
   > svg {
-    font-size: 18px;
+    font-size: 1.8rem;
     color: ${({ theme }) => theme.COLORS.RED_200};
   }
 `;
